@@ -19,7 +19,9 @@
     "dev:server": "ts-node-dev --inspect --transpile-only --ignore node_modules src/server.ts"
   },
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "pg": "^8.5.1",
+    "typeorm": "^0.2.30"
   },
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
