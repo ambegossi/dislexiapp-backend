@@ -4,7 +4,11 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToOne,
+  JoinColumn,
 } from 'typeorm';
+
+import Profile from './Profile';
 
 @Entity('users')
 class User {
@@ -16,6 +20,13 @@ class User {
 
   @Column()
   password: string;
+
+  @Column()
+  profile_id: string;
+
+  @OneToOne(() => Profile)
+  @JoinColumn({ name: 'profile_id' })
+  profile: Profile;
 
   @CreateDateColumn()
   created_at: Date;
