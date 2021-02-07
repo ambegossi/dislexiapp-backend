@@ -4,11 +4,7 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
-  OneToOne,
-  JoinColumn,
 } from 'typeorm';
-
-import User from './User';
 
 @Entity('profiles')
 class Profile {
@@ -20,13 +16,6 @@ class Profile {
 
   @Column('integer')
   level: number;
-
-  @Column()
-  user_id: string;
-
-  @OneToOne(() => User)
-  @JoinColumn({ name: 'user_id' })
-  user: User;
 
   @CreateDateColumn()
   created_at: Date;
