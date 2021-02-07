@@ -5,6 +5,7 @@ import { sign } from 'jsonwebtoken';
 import User from '../models/User';
 
 import authConfig from '../config/auth-config';
+import AppError from '../errors/AppError';
 
 interface Request {
   name: string;
@@ -23,13 +24,13 @@ class AuthenticateUserService {
     const user = await usersRepository.findOne({ where: { name } });
 
     if (!user) {
-      throw new Error('Incorrect name/password combination.');
+      throw new AppError('Incorrect name/password combination.', 401);
     }
 
     const passwordMatched = await compare(password, user.password);
 
     if (!passwordMatched) {
-      throw new Error('Incorrect name/password combination.');
+      throw new AppError('Incorrect name/password combination.', 401);
     }
 
     const { jwt } = authConfig;

@@ -4,6 +4,8 @@ import { hash } from 'bcryptjs';
 import User from '../models/User';
 import Profile from '../models/Profile';
 
+import AppError from '../errors/AppError';
+
 interface Request {
   name: string;
   password: string;
@@ -19,7 +21,7 @@ class CreateUserService {
     });
 
     if (checkUserExists) {
-      throw new Error('User name already used.');
+      throw new AppError('User name already used.');
     }
 
     const profile = profilesRepository.create();
