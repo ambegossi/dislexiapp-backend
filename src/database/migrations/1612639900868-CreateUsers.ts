@@ -5,11 +5,11 @@ import {
   TableForeignKey,
 } from 'typeorm';
 
-export default class CreateProfiles1612639900868 implements MigrationInterface {
+export default class CreateUsers1612639900868 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'profiles',
+        name: 'users',
         columns: [
           {
             name: 'id',
@@ -19,17 +19,16 @@ export default class CreateProfiles1612639900868 implements MigrationInterface {
             default: 'uuid_generate_v4()',
           },
           {
-            name: 'score',
-            type: 'integer',
-            default: 0,
+            name: 'name',
+            type: 'varchar',
+            isUnique: true,
           },
           {
-            name: 'level',
-            type: 'integer',
-            default: 0,
+            name: 'password',
+            type: 'varchar',
           },
           {
-            name: 'user_id',
+            name: 'profile_id',
             type: 'uuid',
           },
           {
@@ -47,12 +46,12 @@ export default class CreateProfiles1612639900868 implements MigrationInterface {
     );
 
     await queryRunner.createForeignKey(
-      'profiles',
+      'users',
       new TableForeignKey({
-        name: 'UserProfile',
-        columnNames: ['user_id'],
+        name: 'ProfileUser',
+        columnNames: ['profile_id'],
         referencedColumnNames: ['id'],
-        referencedTableName: 'users',
+        referencedTableName: 'profiles',
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE',
       }),
@@ -60,8 +59,8 @@ export default class CreateProfiles1612639900868 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropForeignKey('profiles', 'UserProfile');
+    await queryRunner.dropForeignKey('users', 'ProfileUser');
 
-    await queryRunner.dropTable('profiles');
+    await queryRunner.dropTable('users');
   }
 }
