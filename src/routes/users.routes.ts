@@ -9,8 +9,10 @@ usersRouter.post('/', async (request, response) => {
 
   const createUser = new CreateUserService();
 
+  const nameLowerCase = name.toLowerCase();
+
   const user = await createUser.execute({
-    name,
+    name: nameLowerCase,
     password,
   });
 
