@@ -22,7 +22,7 @@ sessionsRouter.post('/', async (request, response) => {
     updated_at: user.updated_at,
   };
 
-  return response.json({ userWithoutPassword, token });
+  return response.json({ user: userWithoutPassword, token });
 });
 
 export default sessionsRouter;
