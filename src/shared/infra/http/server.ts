@@ -2,10 +2,11 @@ import 'reflect-metadata';
 
 import express from 'express';
 import 'express-async-errors';
-import routes from './shared/routes';
 
-import './shared/database';
-import generalException from './shared/middlewares/generalException';
+import generalException from '@shared/infra/http/middlewares/generalException';
+import routes from './routes';
+
+import '@shared/infra/typeorm';
 
 const app = express();
 

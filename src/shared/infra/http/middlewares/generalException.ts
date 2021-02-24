@@ -1,5 +1,5 @@
-import { ExpressErrorMiddleware } from '../../@types/middleware';
-import AppError from '../errors/AppError';
+import AppError from '@shared/errors/AppError';
+import { ExpressErrorMiddleware } from '../../../../@types/middleware';
 
 const generalException: ExpressErrorMiddleware = (
   err,
