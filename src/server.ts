@@ -2,10 +2,10 @@ import 'reflect-metadata';
 
 import express from 'express';
 import 'express-async-errors';
-import routes from './routes';
+import routes from './shared/routes';
 
-import './database';
-import generalException from './middlewares/generalException';
+import './shared/database';
+import generalException from './shared/middlewares/generalException';
 
 const app = express();
 
