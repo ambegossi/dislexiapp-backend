@@ -28,10 +28,16 @@
         "argsIgnorePattern": "_"
       }
     ],
-    "@typescript-eslint/interface-name-prefix": [
+    "@typescript-eslint/naming-convention": [
       "error",
       {
-        "prefixWithI": "always"
+        "selector": "interface",
+        "prefix": [
+          "I"
+        ],
+        "format": [
+          "PascalCase"
+        ]
       }
     ],
     "import/extensions": [
