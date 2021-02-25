@@ -2,6 +2,7 @@ import 'reflect-metadata';
 
 import express from 'express';
 import 'express-async-errors';
+import cors from 'cors';
 
 import generalException from '@shared/infra/http/middlewares/generalException';
 import routes from './routes';
@@ -10,6 +11,7 @@ import '@shared/infra/typeorm';
 
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 app.use(routes);
 
