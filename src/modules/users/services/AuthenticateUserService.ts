@@ -7,18 +7,18 @@ import User from '@modules/users/infra/typeorm/entities/User';
 import authConfig from '../../../config/auth-config';
 import AppError from '../../../shared/errors/AppError';
 
-interface Request {
+interface IRequest {
   name: string;
   password: string;
 }
 
-interface Response {
+interface IResponse {
   user: User;
   token: string;
 }
 
 class AuthenticateUserService {
-  public async execute({ name, password }: Request): Promise<Response> {
+  public async execute({ name, password }: IRequest): Promise<IResponse> {
     const usersRepository = getRepository(User);
 
     const user = await usersRepository.findOne({ where: { name } });

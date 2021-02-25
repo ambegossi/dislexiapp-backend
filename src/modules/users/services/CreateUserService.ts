@@ -6,13 +6,13 @@ import Profile from '@modules/users/infra/typeorm/entities/Profile';
 
 import AppError from '../../../shared/errors/AppError';
 
-interface Request {
+interface IRequest {
   name: string;
   password: string;
 }
 
 class CreateUserService {
-  public async execute({ name, password }: Request): Promise<User> {
+  public async execute({ name, password }: IRequest): Promise<User> {
     const usersRepository = getRepository(User);
     const profilesRepository = getRepository(Profile);
 
