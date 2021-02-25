@@ -1,5 +1,7 @@
 import { Router } from 'express';
 
+import UsersRepository from '@modules/users/infra/typeorm/repositories/UsersRepository';
+import ProfilesRepository from '@modules/users/infra/typeorm/repositories/ProfilesRepository';
 import CreateUserService from '@modules/users/services/CreateUserService';
 
 const usersRouter = Router();
@@ -7,7 +9,9 @@ const usersRouter = Router();
 usersRouter.post('/', async (request, response) => {
   const { name, password } = request.body;
 
-  const createUser = new CreateUserService();
+  const usersRepository = new UsersRepository();
+  const profilesRepository = new ProfilesRepository();
+  const createUser = new CreateUserService(usersRepository, profilesRepository);
 
   const nameLowerCase = name.toLowerCase();
 

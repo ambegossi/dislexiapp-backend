@@ -1,8 +1,8 @@
-import { getRepository } from 'typeorm';
 import { hash } from 'bcryptjs';
 
 import User from '@modules/users/infra/typeorm/entities/User';
-import Profile from '@modules/users/infra/typeorm/entities/Profile';
+import IUsersRepository from '../repositories/IUsersRepository';
+import IProfilesRepository from '../repositories/IProfilesRepository';
 
 import AppError from '../../../shared/errors/AppError';
 
@@ -12,31 +12,27 @@ interface IRequest {
 }
 
 class CreateUserService {
-  public async execute({ name, password }: IRequest): Promise<User> {
-    const usersRepository = getRepository(User);
-    const profilesRepository = getRepository(Profile);
+  constructor(
+    private usersRepository: IUsersRepository,
+    private profilesRepository: IProfilesRepository,
+  ) {}
 
-    const checkUserExists = await usersRepository.findOne({
-      where: { name },
-    });
+  public async execute({ name, password }: IRequest): Promise<User> {
+    const checkUserExists = await this.usersRepository.findByName(name);
 
     if (checkUserExists) {
       throw new AppError('User name already used.');
     }
 
-    const profile = profilesRepository.create();
-
-    const savedProfile = await profilesRepository.save(profile);
+    const profile = await this.profilesRepository.create();
 
     const hashedPassword = await hash(password, 8);
 
-    const user = usersRepository.create({
+    const user = await this.usersRepository.create({
       name,
       password: hashedPassword,
-      profile_id: savedProfile.id,
+      profile_id: profile.id,
     });
-
-    await usersRepository.save(user);
 
     return user;
   }
