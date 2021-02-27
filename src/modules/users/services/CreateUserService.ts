@@ -1,9 +1,9 @@
-import { hash } from 'bcryptjs';
 import { injectable, inject } from 'tsyringe';
 
 import User from '@modules/users/infra/typeorm/entities/User';
 import IUsersRepository from '../repositories/IUsersRepository';
 import IProfilesRepository from '../repositories/IProfilesRepository';
+import IHashProvider from '../providers/HashProvider/models/IHashProvider';
 
 import AppError from '../../../shared/errors/AppError';
 
@@ -17,8 +17,12 @@ class CreateUserService {
   constructor(
     @inject('UsersRepository')
     private usersRepository: IUsersRepository,
+
     @inject('ProfilesRepository')
     private profilesRepository: IProfilesRepository,
+
+    @inject('HashProvider')
+    private hashProvider: IHashProvider,
   ) { }
 
   public async execute({ name, password }: IRequest): Promise<User> {
@@ -30,7 +34,7 @@ class CreateUserService {
 
     const profile = await this.profilesRepository.create();
 
-    const hashedPassword = await hash(password, 8);
+    const hashedPassword = await this.hashProvider.generateHash(password);
 
     const user = await this.usersRepository.create({
       name,
