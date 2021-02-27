@@ -11,6 +11,12 @@ class profilesRepository implements IProfilesRepository {
     this.ormRepository = getRepository(Profile);
   }
 
+  public async findById(id: string): Promise<Profile | undefined> {
+    const profile = await this.ormRepository.findOne(id);
+
+    return profile;
+  }
+
   public async create(): Promise<Profile> {
     const profile = this.ormRepository.create();
 
