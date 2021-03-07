@@ -19,5 +19,5 @@ app.use(routes);
 app.use(generalException);
 
 app.listen(3333, () => {
-  console.log('server started on port 3333');
+  console.log('🚀 server started on port 3333');
 });
