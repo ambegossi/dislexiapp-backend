@@ -8,6 +8,8 @@ import {
   JoinColumn,
 } from 'typeorm';
 
+import { Exclude } from 'class-transformer';
+
 import Profile from './Profile';
 
 @Entity('users')
@@ -19,6 +21,7 @@ class User {
   name: string;
 
   @Column()
+  @Exclude()
   password: string;
 
   @Column()
