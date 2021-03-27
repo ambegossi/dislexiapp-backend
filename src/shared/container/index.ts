@@ -8,6 +8,9 @@ import UsersRepository from '@modules/users/infra/typeorm/repositories/UsersRepo
 import IProfilesRepository from '@modules/users/repositories/IProfilesRepository';
 import ProfilesRepository from '@modules/users/infra/typeorm/repositories/ProfilesRepository';
 
+import IStimulusRepository from '@modules/stimulus/repositories/IStimulusRepository';
+import StimulusRepository from '@modules/stimulus/infra/typeorm/repositories/StimulusRepository';
+
 container.registerSingleton<IUsersRepository>(
   'UsersRepository',
   UsersRepository,
@@ -16,4 +19,9 @@ container.registerSingleton<IUsersRepository>(
 container.registerSingleton<IProfilesRepository>(
   'ProfilesRepository',
   ProfilesRepository,
+);
+
+container.registerSingleton<IStimulusRepository>(
+  'StimulusRepository',
+  StimulusRepository,
 );
