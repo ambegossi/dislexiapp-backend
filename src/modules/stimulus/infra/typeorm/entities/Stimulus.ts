@@ -6,6 +6,8 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
+import { Expose } from 'class-transformer';
+
 @Entity('stimulus')
 class Stimulus {
   @PrimaryGeneratedColumn('increment')
@@ -25,6 +27,11 @@ class Stimulus {
 
   @UpdateDateColumn()
   updated_at: Date;
+
+  @Expose({ name: 'image_url' })
+  getImageUrl(): string {
+    return `${process.env.APP_API_URL}/files/${this.image}`;
+  }
 }
 
 export default Stimulus;
