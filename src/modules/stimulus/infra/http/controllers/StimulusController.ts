@@ -6,15 +6,9 @@ import ListStimulusService from '@modules/stimulus/services/ListStimulusService'
 
 export default class StimulusController {
   public async index(request: Request, response: Response): Promise<Response> {
-    const { level } = request.query;
-
     const listStimulus = container.resolve(ListStimulusService);
 
-    const levelNumber = Number(level);
-
-    const stimulusList = await listStimulus.execute({
-      level: levelNumber,
-    });
+    const stimulusList = await listStimulus.execute();
 
     return response.json(stimulusList);
   }

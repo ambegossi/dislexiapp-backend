@@ -12,12 +12,22 @@ class StimulusRepository implements IStimulusRepository {
     this.ormRepository = getRepository(Stimulus);
   }
 
-  public async findAllStimulusBySyllabicType(
+  public async findAllStimulus(): Promise<Stimulus[]> {
+    const stimulusList = await this.ormRepository.find();
+
+    return stimulusList;
+  }
+
+  public async findStimulusBySyllabicType(
     syllabic_type: string,
+    number: number,
   ): Promise<Stimulus[]> {
-    const stimulusList = await this.ormRepository.find({
-      where: { syllabic_type },
-    });
+    const stimulusList = await getRepository(Stimulus)
+      .createQueryBuilder()
+      .where({ syllabic_type })
+      .orderBy('RANDOM()')
+      .limit(number)
+      .getMany();
 
     return stimulusList;
   }
