@@ -28,7 +28,7 @@ export default class StimulusController {
 
     const stimulus = await createStimulus.execute({
       word,
-      image: imageFilename,
+      imageFilename,
       syllabic_type,
     });
 

@@ -20,7 +20,7 @@ app.use(routes);
 
 app.use(generalException);
 
-app.use('/files', express.static(uploadConfig.directory));
+app.use('/files', express.static(uploadConfig.uploadsFolder));
 
 app.listen(3333, () => {
   console.log('🚀 server started on port 3333');
