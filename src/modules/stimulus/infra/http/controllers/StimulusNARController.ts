@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
+import { classToClass } from 'class-transformer';
 
 import ListStimulusNARService from '@modules/stimulus/services/ListStimulusNARService';
 
@@ -16,6 +17,6 @@ export default class StimulusNARController {
       number: Number(number),
     });
 
-    return response.json(stimulusList);
+    return response.json(classToClass(stimulusList));
   }
 }

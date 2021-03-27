@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
+import { classToClass } from 'class-transformer';
 
 import CreateStimulusService from '@modules/stimulus/services/CreateStimulusService';
 import ListStimulusService from '@modules/stimulus/services/ListStimulusService';
@@ -10,7 +11,7 @@ export default class StimulusController {
 
     const stimulusList = await listStimulus.execute();
 
-    return response.json(stimulusList);
+    return response.json(classToClass(stimulusList));
   }
 
   public async create(request: Request, response: Response): Promise<Response> {
@@ -26,6 +27,6 @@ export default class StimulusController {
       syllabic_type,
     });
 
-    return response.json(stimulus);
+    return response.json(classToClass(stimulus));
   }
 }
