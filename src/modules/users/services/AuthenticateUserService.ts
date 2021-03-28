@@ -23,7 +23,7 @@ class AuthenticateUserService {
   constructor(
     @inject('UsersRepository')
     private usersRepository: IUsersRepository,
-  ) { }
+  ) {}
 
   public async execute({ name, password }: IRequest): Promise<IResponse> {
     const user = await this.usersRepository.findByName(name);
@@ -39,6 +39,10 @@ class AuthenticateUserService {
     }
 
     const { jwt } = authConfig;
+
+    if (!jwt.secret) {
+      throw new Error('Jwt secret not found');
+    }
 
     const token = sign({}, jwt.secret, {
       subject: user.id,
