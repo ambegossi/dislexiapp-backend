@@ -7,7 +7,7 @@ import StimulusController from '../controllers/StimulusController';
 import StimulusNARController from '../controllers/StimulusNARController';
 
 const stimulusRouter = Router();
-const upload = multer(uploadConfig);
+const upload = multer(uploadConfig.multer);
 const stimulusController = new StimulusController();
 const stimulusNARController = new StimulusNARController();
 
