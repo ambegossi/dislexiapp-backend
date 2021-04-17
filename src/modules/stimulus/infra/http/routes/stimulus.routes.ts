@@ -14,6 +14,11 @@ const stimulusNARController = new StimulusNARController();
 stimulusRouter.use(ensureAuthenticated);
 
 stimulusRouter.post('/', upload.single('image'), stimulusController.create);
+stimulusRouter.post(
+  '/recognize',
+  upload.single('audio'),
+  stimulusNARController.create,
+);
 stimulusRouter.get('/', stimulusController.index);
 stimulusRouter.get('/:profile_id', stimulusNARController.index);
 
