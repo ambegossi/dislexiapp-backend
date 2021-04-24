@@ -59,7 +59,7 @@ class RecognizeStimulusService {
       };
     }
 
-    if (transcription !== stimulusWord.toLowerCase()) {
+    if (transcription !== stimulusWord) {
       return {
         recognition: {
           isCorrect: false,
