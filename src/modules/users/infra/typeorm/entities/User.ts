@@ -27,7 +27,7 @@ class User {
   @Column()
   profile_id: string;
 
-  @OneToOne(() => Profile)
+  @OneToOne(() => Profile, { cascade: true })
   @JoinColumn({ name: 'profile_id' })
   profile: Profile;
 
