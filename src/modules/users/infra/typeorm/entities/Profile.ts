@@ -4,7 +4,11 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  ManyToOne,
+  JoinColumn,
 } from 'typeorm';
+
+import Avatar from './Avatar';
 
 @Entity('profiles')
 class Profile {
@@ -16,6 +20,10 @@ class Profile {
 
   @Column('integer')
   level: number;
+
+  @ManyToOne(() => Avatar, { cascade: true })
+  @JoinColumn({ name: 'avatar_id' })
+  avatar: Avatar;
 
   @CreateDateColumn()
   created_at: Date;

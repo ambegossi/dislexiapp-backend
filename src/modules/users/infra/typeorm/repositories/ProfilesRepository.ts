@@ -12,7 +12,10 @@ class profilesRepository implements IProfilesRepository {
   }
 
   public async findById(id: string): Promise<Profile | undefined> {
-    const profile = await this.ormRepository.findOne(id);
+    const profile = await this.ormRepository.findOne({
+      where: { id },
+      relations: ['avatar'],
+    });
 
     return profile;
   }

@@ -15,7 +15,7 @@ class UsersRepository implements IUsersRepository {
   public async findById(id: string): Promise<User | undefined> {
     const user = await this.ormRepository.findOne({
       where: { id },
-      relations: ['profile'],
+      relations: ['profile', 'profile.avatar'],
     });
 
     return user;
@@ -24,7 +24,7 @@ class UsersRepository implements IUsersRepository {
   public async findByName(name: string): Promise<User | undefined> {
     const user = await this.ormRepository.findOne({
       where: { name },
-      relations: ['profile'],
+      relations: ['profile', 'profile.avatar'],
     });
 
     return user;
