@@ -23,7 +23,7 @@ class Profile {
 
   @ManyToOne(() => Avatar, { cascade: true })
   @JoinColumn({ name: 'avatar_id' })
-  avatar: Avatar;
+  avatar: Avatar | null;
 
   @CreateDateColumn()
   created_at: Date;

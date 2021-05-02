@@ -18,6 +18,12 @@ class AvatarsRepository implements IAvatarsRepository {
     return avatarList;
   }
 
+  public async findById(id: number): Promise<Avatar | undefined> {
+    const avatar = await this.ormRepository.findOne(id);
+
+    return avatar;
+  }
+
   public async create(avatarData: ICreateAvatarDTO): Promise<Avatar> {
     const avatar = this.ormRepository.create(avatarData);
 
