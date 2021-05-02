@@ -12,13 +12,13 @@ class StimulusRepository implements IStimulusRepository {
     this.ormRepository = getRepository(Stimulus);
   }
 
-  public async findAllStimulus(): Promise<Stimulus[]> {
+  public async findAll(): Promise<Stimulus[]> {
     const stimulusList = await this.ormRepository.find();
 
     return stimulusList;
   }
 
-  public async findStimulusBySyllabicType(
+  public async findBySyllabicType(
     syllabic_type: string,
     number: number,
   ): Promise<Stimulus[]> {

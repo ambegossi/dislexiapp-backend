@@ -11,7 +11,7 @@ class ListAvatarsService {
   ) {}
 
   public async execute(): Promise<Avatar[]> {
-    const avatarList = await this.avatarsRepository.findAllAvatars();
+    const avatarList = await this.avatarsRepository.findAll();
 
     return avatarList;
   }

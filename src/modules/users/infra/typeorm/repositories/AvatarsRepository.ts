@@ -12,7 +12,7 @@ class AvatarsRepository implements IAvatarsRepository {
     this.ormRepository = getRepository(Avatar);
   }
 
-  public async findAllAvatars(): Promise<Avatar[]> {
+  public async findAll(): Promise<Avatar[]> {
     const avatarList = await this.ormRepository.find();
 
     return avatarList;

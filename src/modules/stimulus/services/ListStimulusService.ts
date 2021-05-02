@@ -11,7 +11,7 @@ class ListStimulusService {
   ) {}
 
   public async execute(): Promise<Stimulus[]> {
-    const stimulusList = await this.stimulusRepository.findAllStimulus();
+    const stimulusList = await this.stimulusRepository.findAll();
 
     return stimulusList;
   }

@@ -48,7 +48,7 @@ class ListStimulusNARService {
       );
     }
 
-    const stimulusList = await this.stimulusRepository.findStimulusBySyllabicType(
+    const stimulusList = await this.stimulusRepository.findBySyllabicType(
       syllabic_type,
       number,
     );

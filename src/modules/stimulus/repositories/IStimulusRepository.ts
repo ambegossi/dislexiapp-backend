@@ -2,8 +2,8 @@ import Stimulus from '../infra/typeorm/entities/Stimulus';
 import ICreateStimulusDTO from '../dtos/ICreateStimulusDTO';
 
 export default interface IStimulusRepository {
-  findAllStimulus(): Promise<Stimulus[]>;
-  findStimulusBySyllabicType(
+  findAll(): Promise<Stimulus[]>;
+  findBySyllabicType(
     syllabic_type: string,
     number: number,
   ): Promise<Stimulus[]>;
