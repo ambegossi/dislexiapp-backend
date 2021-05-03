@@ -11,7 +11,7 @@ const profileAvatarController = new ProfileAvatarController();
 
 profileRouter.use(ensureAuthenticated);
 
-profileRouter.get('/', profileController.show);
+profileRouter.get('/:profile_id', profileController.show);
 profileRouter.put('/', profileController.update);
 profileRouter.patch('/avatar', profileAvatarController.update);
 
