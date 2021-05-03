@@ -29,27 +29,39 @@ class ListStimulusNARService {
 
     const { level } = profile;
 
-    let syllabic_type;
+    let syllabic_types;
 
     if (level >= 0 && level <= 9) {
-      syllabic_type = 'monosyllabic';
+      syllabic_types = [{ syllabic_type: 'monosyllabic' }];
     } else if (level >= 10 && level <= 19) {
-      syllabic_type = 'disyllabic';
+      syllabic_types = [
+        { syllabic_type: 'monosyllabic' },
+        { syllabic_type: 'disyllabic' },
+      ];
     } else if (level >= 20 && level <= 29) {
-      syllabic_type = 'trisyllabic';
+      syllabic_types = [
+        { syllabic_type: 'monosyllabic' },
+        { syllabic_type: 'disyllabic' },
+        { syllabic_type: 'trisyllabic' },
+      ];
     } else if (level >= 30) {
-      syllabic_type = 'polysyllabic';
+      syllabic_types = [
+        { syllabic_type: 'monosyllabic' },
+        { syllabic_type: 'disyllabic' },
+        { syllabic_type: 'trisyllabic' },
+        { syllabic_type: 'polysyllabic' },
+      ];
     }
 
-    if (!syllabic_type) {
+    if (!syllabic_types) {
       throw new AppError(
         'It was not possible to find stimulus with this level informed.',
         500,
       );
     }
 
-    const stimulusList = await this.stimulusRepository.findBySyllabicType(
-      syllabic_type,
+    const stimulusList = await this.stimulusRepository.findBySyllabicTypes(
+      syllabic_types,
       number,
     );
 

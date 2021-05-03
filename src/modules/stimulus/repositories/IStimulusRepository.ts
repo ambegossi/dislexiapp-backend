@@ -3,8 +3,8 @@ import ICreateStimulusDTO from '../dtos/ICreateStimulusDTO';
 
 export default interface IStimulusRepository {
   findAll(): Promise<Stimulus[]>;
-  findBySyllabicType(
-    syllabic_type: string,
+  findBySyllabicTypes(
+    syllabic_types: { syllabic_type: string }[],
     number: number,
   ): Promise<Stimulus[]>;
   create(data: ICreateStimulusDTO): Promise<Stimulus>;

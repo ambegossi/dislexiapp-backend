@@ -18,13 +18,13 @@ class StimulusRepository implements IStimulusRepository {
     return stimulusList;
   }
 
-  public async findBySyllabicType(
-    syllabic_type: string,
+  public async findBySyllabicTypes(
+    syllabic_types: { syllabic_type: string }[],
     number: number,
   ): Promise<Stimulus[]> {
     const stimulusList = await this.ormRepository
       .createQueryBuilder()
-      .where({ syllabic_type })
+      .where(syllabic_types)
       .orderBy('RANDOM()')
       .limit(number)
       .getMany();
