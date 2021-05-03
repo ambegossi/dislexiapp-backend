@@ -30,6 +30,20 @@ class UsersRepository implements IUsersRepository {
     return user;
   }
 
+  public async findByProfileScoreOrder(number: number): Promise<User[]> {
+    const users = await this.ormRepository
+      .createQueryBuilder('users')
+      .leftJoinAndSelect('users.profile', 'profile')
+      .leftJoinAndSelect('profile.avatar', 'avatar')
+      .orderBy({
+        'profile.score': 'DESC',
+      })
+      .limit(number)
+      .getMany();
+
+    return users;
+  }
+
   public async create(userData: ICreateUserDTO): Promise<User> {
     const user = this.ormRepository.create(userData);
 
