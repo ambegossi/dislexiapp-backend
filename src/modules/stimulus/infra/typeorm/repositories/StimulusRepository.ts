@@ -22,7 +22,7 @@ class StimulusRepository implements IStimulusRepository {
     syllabic_type: string,
     number: number,
   ): Promise<Stimulus[]> {
-    const stimulusList = await getRepository(Stimulus)
+    const stimulusList = await this.ormRepository
       .createQueryBuilder()
       .where({ syllabic_type })
       .orderBy('RANDOM()')
