@@ -23,13 +23,13 @@ class CreateUserService {
 
     @inject('HashProvider')
     private hashProvider: IHashProvider,
-  ) { }
+  ) {}
 
   public async execute({ name, password }: IRequest): Promise<User> {
     const checkUserExists = await this.usersRepository.findByName(name);
 
     if (checkUserExists) {
-      throw new AppError('User name already used.');
+      throw new AppError('Este nome já está sendo usado.');
     }
 
     const profile = await this.profilesRepository.create();

@@ -29,13 +29,13 @@ class AuthenticateUserService {
     const user = await this.usersRepository.findByName(name);
 
     if (!user) {
-      throw new AppError('Incorrect name/password combination.', 401);
+      throw new AppError('Conta não encontrada.', 401);
     }
 
     const passwordMatched = await compare(password, user.password);
 
     if (!passwordMatched) {
-      throw new AppError('Incorrect name/password combination.', 401);
+      throw new AppError('Dados inválidos.', 401);
     }
 
     const { jwt } = authConfig;

@@ -24,7 +24,7 @@ class ListStimulusNARService {
     const profile = await this.profilesRepository.findById(profile_id);
 
     if (!profile) {
-      throw new AppError('Profile not found.');
+      throw new AppError('Perfil não encontrado.');
     }
 
     const { level } = profile;
@@ -55,7 +55,7 @@ class ListStimulusNARService {
 
     if (!syllabic_types) {
       throw new AppError(
-        'It was not possible to find stimulus with this level informed.',
+        'Não foi possível retornar a lista de estímulos.',
         500,
       );
     }

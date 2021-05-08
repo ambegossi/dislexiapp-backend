@@ -26,13 +26,13 @@ class UpdateUserService {
     const user = await this.usersRepository.findById(user_id);
 
     if (!user) {
-      throw new AppError('User not found.');
+      throw new AppError('Conta não encontrada.');
     }
 
     const userWithUpdatedName = await this.usersRepository.findByName(name);
 
     if (userWithUpdatedName && userWithUpdatedName.id !== user_id) {
-      throw new AppError('Name already in use.');
+      throw new AppError('Este nome já está sendo usado.');
     }
 
     user.name = name;

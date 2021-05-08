@@ -19,7 +19,7 @@ class ShowProfileService {
     const profile = await this.profilesRepository.findById(profile_id);
 
     if (!profile) {
-      throw new AppError('Profile not found.');
+      throw new AppError('Perfil não encontrado.');
     }
 
     return profile;

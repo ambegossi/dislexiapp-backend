@@ -25,14 +25,14 @@ class UpdateProfileAvatarService {
     const user = await this.usersRepository.findById(user_id);
 
     if (!user) {
-      throw new AppError('User not found.');
+      throw new AppError('Conta não encontrada.');
     }
 
     if (avatar_id) {
       const avatar = await this.avatarsRepository.findById(avatar_id);
 
       if (!avatar) {
-        throw new AppError('Avatar not found.');
+        throw new AppError('Avatar não encontrado.');
       }
 
       user.profile.avatar = avatar;
