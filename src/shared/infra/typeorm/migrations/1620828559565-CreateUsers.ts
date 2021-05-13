@@ -5,7 +5,7 @@ import {
   TableForeignKey,
 } from 'typeorm';
 
-export default class CreateUsers1612639900868 implements MigrationInterface {
+export default class CreateUsers1620828559565 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
@@ -29,6 +29,10 @@ export default class CreateUsers1612639900868 implements MigrationInterface {
           },
           {
             name: 'profile_id',
+            type: 'uuid',
+          },
+          {
+            name: 'settings_id',
             type: 'uuid',
           },
           {
@@ -56,10 +60,24 @@ export default class CreateUsers1612639900868 implements MigrationInterface {
         onUpdate: 'CASCADE',
       }),
     );
+
+    await queryRunner.createForeignKey(
+      'users',
+      new TableForeignKey({
+        name: 'SettingsUser',
+        columnNames: ['settings_id'],
+        referencedColumnNames: ['id'],
+        referencedTableName: 'settings',
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
+      }),
+    );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.dropForeignKey('users', 'ProfileUser');
+
+    await queryRunner.dropForeignKey('users', 'SettingsUser');
 
     await queryRunner.dropTable('users');
   }

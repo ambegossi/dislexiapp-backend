@@ -15,6 +15,9 @@ import AvatarsRepository from '@modules/users/infra/typeorm/repositories/Avatars
 import IStimulusRepository from '@modules/stimulus/repositories/IStimulusRepository';
 import StimulusRepository from '@modules/stimulus/infra/typeorm/repositories/StimulusRepository';
 
+import ISettingsRepository from '@modules/users/repositories/ISettingsRepository';
+import SettingsRepository from '@modules/users/infra/typeorm/repositories/SettingsRepository';
+
 container.registerSingleton<IUsersRepository>(
   'UsersRepository',
   UsersRepository,
@@ -33,4 +36,9 @@ container.registerSingleton<IAvatarsRepository>(
 container.registerSingleton<IStimulusRepository>(
   'StimulusRepository',
   StimulusRepository,
+);
+
+container.registerSingleton<ISettingsRepository>(
+  'SettingsRepository',
+  SettingsRepository,
 );

@@ -11,6 +11,7 @@ import {
 import { Exclude } from 'class-transformer';
 
 import Profile from './Profile';
+import Settings from './Settings';
 
 @Entity('users')
 class User {
@@ -30,6 +31,10 @@ class User {
   @OneToOne(() => Profile, { cascade: true })
   @JoinColumn({ name: 'profile_id' })
   profile: Profile;
+
+  @OneToOne(() => Settings, { cascade: true })
+  @JoinColumn({ name: 'settings_id' })
+  settings: Settings;
 
   @CreateDateColumn()
   created_at: Date;
