@@ -31,6 +31,10 @@ class profilesRepository implements IProfilesRepository {
   public async save(profile: Profile): Promise<Profile> {
     return this.ormRepository.save(profile);
   }
+
+  public async remove(profile: Profile): Promise<Profile> {
+    return this.ormRepository.remove(profile);
+  }
 }
 
 export default profilesRepository;

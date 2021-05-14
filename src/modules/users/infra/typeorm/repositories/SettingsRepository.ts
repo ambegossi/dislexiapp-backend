@@ -22,6 +22,10 @@ class settingsRepository implements ISettingsRepository {
   public async save(settings: Settings): Promise<Settings> {
     return this.ormRepository.save(settings);
   }
+
+  public async remove(settings: Settings): Promise<Settings> {
+    return this.ormRepository.remove(settings);
+  }
 }
 
 export default settingsRepository;
