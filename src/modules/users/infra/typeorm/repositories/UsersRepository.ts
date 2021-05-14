@@ -35,6 +35,10 @@ class UsersRepository implements IUsersRepository {
       .createQueryBuilder('users')
       .leftJoinAndSelect('users.profile', 'profile')
       .leftJoinAndSelect('profile.avatar', 'avatar')
+      .leftJoinAndSelect('users.settings', 'settings')
+      .where('settings.private_profile = :private_profile', {
+        private_profile: false,
+      })
       .orderBy({
         'profile.score': 'DESC',
       })
