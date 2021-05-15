@@ -37,6 +37,8 @@ class GoogleSpeechRecognitionProvider implements ISpeechRecognitionProvider {
 
     const { results } = response;
 
+    await fs.promises.unlink(originalPath);
+
     if (
       !results ||
       results.length === 0 ||
@@ -53,8 +55,6 @@ class GoogleSpeechRecognitionProvider implements ISpeechRecognitionProvider {
       .join('\n');
 
     console.log(`Transcription: ${transcriptionLog}`);
-
-    await fs.promises.unlink(originalPath);
 
     return transcription;
   }
