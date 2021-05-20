@@ -31,9 +31,9 @@ class ListStimulusNARService {
 
     let syllabic_types;
 
-    if (level >= 0 && level <= 9) {
+    if (level >= 0 && level <= 5) {
       syllabic_types = [{ syllabic_type: 'monosyllabic' }];
-    } else if (level >= 10 && level <= 19) {
+    } else if (level >= 6 && level <= 19) {
       syllabic_types = [
         { syllabic_type: 'monosyllabic' },
         { syllabic_type: 'disyllabic' },
