@@ -24,8 +24,6 @@ export default class StimulusNARController {
   public async create(request: Request, response: Response): Promise<Response> {
     const { word } = request.body;
 
-    console.log('word', word);
-
     const audioFilename = request.file.filename;
 
     const recognizeStimulus = container.resolve(RecognizeStimulusService);

@@ -15,6 +15,7 @@ class GoogleSpeechRecognitionProvider implements ISpeechRecognitionProvider {
 
   public async recognize(
     audioFilename: string,
+    expectedTranscript: string,
   ): Promise<string | null | undefined> {
     const originalPath = path.resolve(uploadConfig.tmpFolder, audioFilename);
 
@@ -27,6 +28,12 @@ class GoogleSpeechRecognitionProvider implements ISpeechRecognitionProvider {
     };
 
     const config = speechRecognitionConfig.config.google.recognitionConfig;
+
+    config.speechContexts = [
+      {
+        phrases: [expectedTranscript],
+      },
+    ];
 
     const request = {
       audio: audioFile,
@@ -49,12 +56,6 @@ class GoogleSpeechRecognitionProvider implements ISpeechRecognitionProvider {
     }
 
     const transcription = results[0].alternatives[0].transcript;
-
-    const transcriptionLog = results
-      .map(result => result.alternatives[0].transcript)
-      .join('\n');
-
-    console.log(`Transcription: ${transcriptionLog}`);
 
     return transcription;
   }

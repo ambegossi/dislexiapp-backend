@@ -1,3 +1,6 @@
 export default interface ISpeechRecognitionProvider {
-  recognize(audioFilename: string): Promise<string | null | undefined>;
+  recognize(
+    audioFilename: string,
+    expectedTranscript: string,
+  ): Promise<string | null | undefined>;
 }

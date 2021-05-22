@@ -50,6 +50,7 @@ class RecognizeStimulusService {
 
     const transcription = await this.speechRecognitionProvider.recognize(
       `${filenameWithoutExtension}.wav`,
+      stimulusWord,
     );
 
     if (!transcription) {

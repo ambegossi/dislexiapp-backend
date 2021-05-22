@@ -8,6 +8,11 @@ interface ISpeechRecognitionConfig {
         sampleRateHertz: number;
         languageCode: string;
         model: string;
+        speechContexts: [
+          {
+            phrases: string[];
+          },
+        ];
       };
     };
   };
