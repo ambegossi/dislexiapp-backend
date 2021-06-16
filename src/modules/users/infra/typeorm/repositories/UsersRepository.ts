@@ -1,4 +1,4 @@
-import { getRepository, Repository } from 'typeorm';
+import { getRepository, Repository, Raw } from 'typeorm';
 
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import ICreateUserDTO from '@modules/users/dtos/ICreateUserDTO';
@@ -23,7 +23,9 @@ class UsersRepository implements IUsersRepository {
 
   public async findByName(name: string): Promise<User | undefined> {
     const user = await this.ormRepository.findOne({
-      where: { name },
+      where: {
+        name: Raw(value => `LOWER(${value}) Like '%${name.toLowerCase()}%'`),
+      },
       relations: ['profile', 'profile.avatar', 'settings'],
     });
 
