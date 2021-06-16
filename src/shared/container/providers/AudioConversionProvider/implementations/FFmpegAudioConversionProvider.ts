@@ -18,7 +18,9 @@ class FFmpegAudioConversionProvider implements IAudioConversionProvider {
         .audioCodec(audioCodec)
         .audioChannels(audioChannels)
         .save(output)
-        .on('err', err => {
+        .on('err', async err => {
+          await fs.promises.unlink(input);
+
           return reject(err);
         })
         .on('end', async () => {
