@@ -12,10 +12,10 @@ export default class UsersController {
 
     const createUser = container.resolve(CreateUserService);
 
-    const nameLowerCase = name.toLowerCase();
+    const nameWhitespaceStripped = name.trim();
 
     const user = await createUser.execute({
-      name: nameLowerCase,
+      name: nameWhitespaceStripped,
       password,
     });
 
@@ -29,11 +29,11 @@ export default class UsersController {
 
     const updateUser = container.resolve(UpdateUserService);
 
-    const nameLowerCase = name.toLowerCase();
+    const nameWhitespaceStripped = name.trim();
 
     const user = await updateUser.execute({
       user_id,
-      name: nameLowerCase,
+      name: nameWhitespaceStripped,
       password,
     });
 

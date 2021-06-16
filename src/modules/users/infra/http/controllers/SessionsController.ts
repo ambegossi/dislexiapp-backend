@@ -10,10 +10,10 @@ export default class SessionsController {
 
     const authenticateUser = container.resolve(AuthenticateUserService);
 
-    const nameLowerCase = name.toLowerCase();
+    const nameWhitespaceStripped = name.trim();
 
     const { user, token } = await authenticateUser.execute({
-      name: nameLowerCase,
+      name: nameWhitespaceStripped,
       password,
     });
 
