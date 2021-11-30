@@ -12,10 +12,12 @@
 - [Express](https://expressjs.com/)
 - [TypeScript](https://www.typescriptlang.org/)
 - [Google Cloud Speech-to-Text](https://cloud.google.com/speech-to-text)
-- [Google CLoud Text-to-Speech](https://cloud.google.com/text-to-speech)
+- [Google Cloud Text-to-Speech](https://cloud.google.com/text-to-speech)
 - [AWS SDK](https://aws.amazon.com/pt/sdk-for-javascript/)
 - [TypeORM](https://typeorm.io/#/)
 - [PostgreSQL](https://www.postgresql.org/)
+- [Redis](https://redis.io/)
+- [Fluent FFMPEG](https://github.com/fluent-ffmpeg/node-fluent-ffmpeg)
 
 ## :information_source: How To Use
 
